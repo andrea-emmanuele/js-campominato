@@ -65,26 +65,32 @@ function createField(arrayFlowers, arrayMines) {
 }
 
 function checkSlots(arrayFlowers, arrayMines, i) {
-    let slot = parseInt(document.getElementById(i).id);
-    console.log(slot);
+    let slot = document.getElementById(i);
+    let id = parseInt(slot.id);
+
+    slot.classList.add("shown");
+    console.log(id);
 
     for (let j = 0; j < arrayMines.length; j++) {
-        if (slot === arrayMines[j]) {
-            console.log("trovato! " + " Slot n. " + slot + " mina n. " + arrayMines[j]);
+        if (id === arrayMines[j]) {
+            console.log("trovato! " + " Slot n. " + id + " mina n. " + arrayMines[j]);
             arrayMines[j] = 0;
             console.log(arrayMines);
-            gameOver.style.display = "block";
+            slot.style.backgroundColor = "#FF0002";
+            slot.innerHTML = "<img src='./assets/img/bomb.svg' alt='boom'>";
+            gameOver.style.display = "flex";
         }
     }
 
     for (let j = 0; j < arrayFlowers.length; j++) {
-        if (slot === arrayFlowers[j]) {
-            console.log("trovato! " + " Slot n. " + slot + " fiore n. " + arrayFlowers[j]);
+        if (id === arrayFlowers[j]) {
+            console.log("trovato! " + " Slot n. " + id + " fiore n. " + arrayFlowers[j]);
             points += 1;
             score.innerHTML = "" + points + "";
             arrayFlowers[j] = 0;
             console.log(arrayFlowers);
             console.log(points);
+            slot.innerHTML = "<img src='./assets/img/flower.png' alt='flower'>";
         }
     }
 }
